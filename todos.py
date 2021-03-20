@@ -1,3 +1,5 @@
+import sqlite3
+
 class TaskManager:
     def __init__(self):
         self.tasks = []
