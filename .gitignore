@@ -1,3 +1,7 @@
 .venv
 
 __pycache__
+
+liste_taches.txt
+
+todos_final.py

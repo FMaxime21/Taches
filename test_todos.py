@@ -61,3 +61,21 @@ def test_parse_statut_o():
 
     assert action.numero == 1
     assert action.statut == "fait"
+
+def test_repository():
+    task_manager = TaskManager()
+    tache1 = task_manager.parse_add("tache1", "1", "A faire")
+    tasks = [tache1]
+
+    assert task_manager.tasks == []
+
+def test_write_file():
+    fichier = open("liste_taches.txt", "w")
+    fichier.write("Bonjour monde")
+    fichier.close()
+
+def test_read_file():
+    fichier = open("liste_taches.txt", "r")
+    Read = fichier.read()
+    print(Read)
+    fichier.close()
