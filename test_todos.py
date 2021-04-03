@@ -21,7 +21,7 @@ def test_task_manager_starts_with_no_tasks():
 def test_parse_del():
     command = "- numero"
     numero = 1
-    statut = "à faire"
+    statut = "a faire"
     task_manager = TaskManager()
 
     action = task_manager.parse_del(command, numero, statut)
@@ -31,25 +31,25 @@ def test_parse_del():
 def test_parse_add():
     command = "+ first task"
     numero = 1
-    statut = "à faire"
+    statut = "a faire"
     task_manager = TaskManager()
 
     action = task_manager.parse_add(command,numero, statut)
 
     assert action.name == "add"
     assert action.description == "first task"
-    assert action.statut == "à faire"
+    assert action.statut == "a faire"
 
 def test_parse_statut_x():
     command = "x numero"
     numero = 1
-    statut = "à faire"
+    statut = "a faire"
     task_manager = TaskManager()
 
     action = task_manager.parse_statut_x(command, numero, statut)
 
     assert action.numero == 1
-    assert action.statut == "à faire"
+    assert action.statut == "a faire"
 
 def test_parse_statut_o():
     command = "x numero"
@@ -69,13 +69,20 @@ def test_repository():
 
     assert task_manager.tasks == []
 
-def test_write_file():
-    fichier = open("liste_taches.txt", "w")
-    fichier.write("Bonjour monde")
-    fichier.close()
-
 def test_read_file():
     fichier = open("liste_taches.txt", "r")
     Read = fichier.read()
     print(Read)
+    fichier.close()
+
+def test_write_file_tasks():
+    fichier = open("liste_taches.txt", "w")
+    task_manager = TaskManager()
+    tache1 = task_manager.parse_add("", "", "")
+    fichier.write(tache1.name)
+    fichier.write(" ")
+    fichier.write(tache1.numero)
+    fichier.write(" ")
+    fichier.write(tache1.statut)
+    fichier.write(" ")
     fichier.close()
